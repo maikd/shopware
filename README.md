@@ -10,8 +10,6 @@
 
 ## Konfiguration der Endpunkte
 		
-======================
-
 Jetzt müssen noch die EASYMARKETING Endpunkte eingetragen werden in Ihrem EASYMARKETING Account. Über die Endpunkte kann EASYMARKETING entsprechende Produkte und Kategorien extrahieren aus Ihrem Shopsystem. Diese Endpunkte sind je Shopsystem unterschiedlich.
 
 Dazu öffnen Sie bitte Ihre API Einstellungen in Ihrem EASYMARKETING Account unter `Meine Daten -> API`
@@ -68,7 +66,6 @@ Dann muss genau dieser Token auch in Ihrem EASYMARKETING Account eingegeben werd
 			
 
 ## Für Entwickler
-======================
 
 * Im `master` gucken ob es nicht bereits bestehende bug-fixes gibt.
 
