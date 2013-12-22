@@ -1,9 +1,8 @@
 # EASYMARKETING Gambio Module
 
 ## Installation des Moduls
-======================
 
-1. Das Modul hier herunterladen und entpacken.
+1. [Das Modul hier herunterladen und entpacken.](https://github.com/EASYMARKETING/shopware/archive/master.zip)
 
 2. Den Ordner SwpEasymarketing per FTP auf den Server kopieren unter: `[ROOT]/engine/Shopware/Plugins/Community/Frontend`
  
