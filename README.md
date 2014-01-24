@@ -18,6 +18,9 @@ Dazu öffnen Sie bitte Ihre API Einstellungen in Ihrem EASYMARKETING Account unt
 
 Produkte API Endpunkt
 
+Anmerkung: Wir empfehlen die Verwendung von https sofern Sie ein gültiges
+Zertifikat für Ihren Webserver besitzen.
+
 	https://example.com/easymarketing_api/products
 	
 Beste Produkte API Endpunkt
