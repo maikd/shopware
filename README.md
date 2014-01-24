@@ -1,4 +1,4 @@
-# EASYMARKETING Gambio Module
+# EASYMARKETING Shopware Module
 
 ## Installation des Moduls
 
@@ -18,23 +18,23 @@ Dazu öffnen Sie bitte Ihre API Einstellungen in Ihrem EASYMARKETING Account unt
 
 Produkte API Endpunkt
 
-	http://example.com/easymarketing_api/products
+	https://example.com/easymarketing_api/products
 	
 Beste Produkte API Endpunkt
 
-	http://example.com/easymarketing_api/best_products
+	https://example.com/easymarketing_api/best_products
 	
 Neue Produkte API Endpunkt
 
-	http://example.com/easymarketing_api/new_products
+	https://example.com/easymarketing_api/new_products
 
 Produkt via ID Endpunkt
 
-	http://example.com/easymarketing_api/product_by_id
+	https://example.com/easymarketing_api/product_by_id
 
 Kategorien API Endpunkt
 
-	http://example.com/easymarketing_api/categories
+	https://example.com/easymarketing_api/categories
 	
 **Produkt ID zum testen** 
 
