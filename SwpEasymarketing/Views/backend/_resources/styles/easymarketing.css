@@ -1,0 +1,7 @@
+@charset "UTF-8";
+/* CSS Document for easymarketing backend plugin */
+
+.easymarketing-icon {
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAA3NCSVQICAjb4U/gAAABdFBMVEX///9qampcXFx3d3dmZmZeXl5sbGxmZmZZUks+Pj5ZXF9CQkJsbGxsbGxiYmKZmZliYmJiYmJSUlJOTk5KSkqVnKBvb29sbGxqamptZ2NgYGBaWlp0Vj9WVlZWVVROTk6Li4t8fHxsbGxqampiZWdiYmJgYGBeXl5QUFBOTk61tbWho6aZmZmCgoJ8fHx+YUpgYGBcXFxUVFSvr6+FhYVscXRwcHBgYGBaWlq1tbWxsbGbakVsbGxiYmKvr6+ip6yfn590dHRsbGz////4/f/7+/v3+/75+fn0+vz39vbw9vvx8fHx8fDt7e3s6+vq6urn5+fl5eXf5uzd5ev938jh4eHg39/d3d322MHb29va2dnZ2NjP2eDT19nW1tbO1tzZ083tzLLQ0dHMzMzJycnLycjHx8fDw8O7wcW6urq3t7e6trSxsbHOqo3opG2gn5/ljEiZmZmrk3/PgEGFhYXjdB/Mcy6zdkV3d3dycnKaZ0C5UwXwAGa3AAAAfHRSTlMAEREiIiIzMzMzRERVZmZ3d4iIiIiZmZmZmZmZmZmZmaqqqqqqqqqqqqq7u7u7u7u7u7vMzMzMzMzd3d3d3e7u7u7u////////////////////////////////////////////////////////////////////////////fT7XVgAAAAlwSFlzAAAK6wAACusBgosNWgAAABh0RVh0Q3JlYXRpb24gVGltZQAyMS4wMy4yMDE0M3q0LAAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAC0SURBVBiVY2AgEzBy8vFys8K5THziStLSyuICbBA+s5qshLGZhbGusCEPiM9ioKPnlJ6UFldio23KBRQQlDfJjHT38/XxjreX0edgYFeVqgzwTYmOjAkKKbeWVGEQUrRMck/zcXaLKC5IzBC1ZTAXcgwMCPMoKivNS3AplFNnsBWp8Av1C66qznWOdc3XkGbQFLOL9E1yTs32CojyzlIwYuA3tkp2jfR0dnYOd/fP0XIg7C0AZ6Qln0qrmv0AAAAASUVORK5CYII=');
+	background-repeat:no-repeat !important;
+}
