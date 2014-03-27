@@ -1,6 +1,8 @@
-# EASYMARKETING Shopware Module
+# easymarketing Shopware Module
 
 ## Installation des Moduls
+
+Falls Sie bereits das Modul installiert haben, so deaktivieren Sie dieses bevor Sie die nächsten Schritte durchführen.
 
 1. [Das Modul hier herunterladen und entpacken.](https://github.com/EASYMARKETING/shopware/archive/master.zip)
 
@@ -8,65 +10,40 @@
  
 3. Dann im Backend einfach unter Einstellungen Plugin-Manager das Modul installieren und aktivieren.
 
-## Konfiguration der Endpunkte
+## Konfiguration vom Modul
 		
-Jetzt müssen noch die EASYMARKETING Endpunkte eingetragen werden in Ihrem EASYMARKETING Account. Über die Endpunkte kann EASYMARKETING entsprechende Produkte und Kategorien extrahieren aus Ihrem Shopsystem. Diese Endpunkte sind je Shopsystem unterschiedlich.
+Um die Konfiguration vom Modul vornehmen zu können, laden Sie das Backend neu. 
+Gehen Sie nun über das Menü `Marketing`
+Hier gibt es nun einen weiteren Eintrag mit dem Titel `Easymarketing`, welchen Sie nun anklicken.
 
-Dazu öffnen Sie bitte Ihre API Einstellungen in Ihrem EASYMARKETING Account unter `Meine Daten -> API`
+Das Modul wird nun in einem Fenster innerhalb des Backends geöffnet. 
+Klicken Sie dort den Reiter `Einstellungen` an und nehmen Sie folgende Einstellungen vor:
 
-Ändern Sie `example.com` in den Beispiel unten in Ihre Domain.
+* API Token
+Um den API Token zu erhalten, Ã¶ffnen Sie bitte dazu Ihre API Einstellungen in Ihrem easymarketing Account unter `Meine Daten -> API`.
+Dort kopieren Sie sich den API Token und fügen Sie diesen in das Feld ein.
 
-Produkte API Endpunkt
+* Root Kategorie
+Hier haben Sie eine Liste von sämtlichen Kategorien in Ihrem Shop. 
+Die hier ausgewählte Kategorie wird an easymarketing übermittelt. 
+Dadurch werden von easymarketing nur Kategorien und Produkte unterhalb dieser festgelegten Kategorie abgefragt.
 
-Anmerkung: Bitte verwenden Sie https nur, falls Sie ein vertrauenswürdiges
-SSL-Zertifikat besitzen.
+* Facebook Button anzeigen
+Mit dieser Einstellung haben Sie die Möglichkeit zu entscheiden, ob der Facebook Button von easymarketing in Ihrem Checkout auf der Bestellbestätigungsseite angezeigt werden soll.
 
-	https://example.com/easymarketing_api/products
-	
-Beste Produkte API Endpunkt
+Sind alle oben genannten Punkte konfiguriert, klicken Sie nun auf den Button `Speichern`.
+Im Hintergrund wird die Installation und Konfiguration vom Modul durchgeführt.
 
-	https://example.com/easymarketing_api/best_products
-	
-Neue Produkte API Endpunkt
+Nachdem die Einrichtung abgeschlossen wurde, sehen Sie unter dem Tab `Übersicht`, ob diese erfolgreich war.
 
-	https://example.com/easymarketing_api/new_products
+## Änderungen am Shop
+Sollten Sie einmal die Domain oder das Verzeichnis von Ihrem Shop wechseln, dann können Sie die Änderungen problemlos und einfach über das erneute Betätigen des Buttons `Speichern` im Tab `Einstellungen` easymarketing übertragen.
 
-Produkt via ID Endpunkt
-
-	https://example.com/easymarketing_api/product_by_id
-
-Kategorien API Endpunkt
-
-	https://example.com/easymarketing_api/categories
-	
-**Produkt ID zum testen** 
-
-Hier wird einfach zufällig eine Produkt ID aus Ihrem Shop eingetragen. Diese wird nur zu Test-Zwecken mit angegeben. EASYMARKETING testet dann, ob dieses einzelne Produkt erfolgreich extrahiert werden kann.
-
-Wenn Sie in Ihrem Shop ein Produkt mit der ID `1` haben könnte dies z.B. sein:
-
-	1
-
-**ID der Root Kategorie**
-
-Das ist die ID der höchsten Kategorie in Ihrem Shop. Die `Ober-Kategorie` bzw. `Root-Kategorie` enthält alle Unter-Kategorien Ihres Shopsystem. EASYMARKETING wird dann alle Unter-Kategorien versuchen zu extrahieren. In Ihrem `Kategorie-Verwalter` steht die ID typischerweise in dem Link wenn Sie mit der Maus über die `Ober-Kategorie` navigieren.
-
-
-**Konfiguration des Shop Token**
-
-Der Shop Token ist ein Passwort Ihres Shops. Dieses Passwort kann auf der Modul-Seite des Plugins definiert werden. EASYMARKETING übermittelt bei jeder Anfrage diesen `Shop Token`. Nur falls der `Shop Token` Ihrem eingegebenem Token entspricht, werden die Anfragen autorisiert. Sie müssen hier also genau den von Ihnen definierten `Shop Token` eingeben.
-
-Beispiel:
-
-Sie haben in Ihrem Backend auf der Modulseite den Token wie folgt definiert:
-
-	  Shop Token: 123123123123
-	  
-Dann muss genau dieser Token auch in Ihrem EASYMARKETING Account eingegeben werden.
-
-
-      Shop token: 123123123123
-			
+## Zukünfige Updates vom Modul
+Bei zukünftigen Updates vom Modul, gehen Sie die Schritte 1 und 2 aus dem Punkt `Installation des Moduls` aus dieser Anleitung nochmals durch.
+Die Versionsnummer vom Modul wird bei jedem Update erneuert, sodass letzendlich neben dem Icon für das Löschen des Moduls ein blauer runder Pfeil erscheint.
+Diesen klicken Sie bitte einmal an. Dadurch wird das Update durchgeführt.
+Nach Abschluss des Updates wird eine höhere Versionsnummer in der Spalte `Version` angezeigt.
 
 ## Für Entwickler
 
