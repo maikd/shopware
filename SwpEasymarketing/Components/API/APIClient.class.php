@@ -139,6 +139,7 @@ class APIClient
 				}
                 break;
         	case 200:
+			case 202:
 			 	$success = true;
                 break;
 		}

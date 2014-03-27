@@ -15,7 +15,11 @@ Ext.define('Shopware.apps.Easymarketing.model.Configs', {
 		}, {
 			name: 'ShowFacebookLikeBadge',
 			type: 'integer',
-			defaultValue: 2
+			defaultValue: 0
+		}, {
+			name: 'RetargetingAdScaleStatus',
+			type: 'integer',
+			defaultValue: 0
 		}, {
 			name: 'APIStatus',
 			type: 'integer',

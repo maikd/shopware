@@ -127,9 +127,31 @@ Ext.define('Shopware.apps.Easymarketing.view.Configs', {
 				name: 'ShowFacebookLikeBadge',
 				store: new Ext.data.ArrayStore({
 					fields: ['id', 'name'],
-					data: [[1, 'ja'], [2, 'nein']]
+					data: [[1, 'ja'], [0, 'nein']]
 				}),
 				supportText: 'Ist dies aktiviert, so wird auf der Bestellbestätigungsseite der Facebook Like Button angezeigt.'
+			}]
+		}, {
+			xtype: 'fieldset',
+			title: 'Retargeting',
+			layout: 'anchor',
+			defaults: {
+				labelWidth: 150,
+				xtype: 'combo',
+				valueField: 'id',
+				displayField: 'name',
+				queryMode: 'local',
+				anchor: '100%',
+				allowBlank: false,
+			},
+			items: [{
+				fieldLabel: '{s name=easymarketing/view/configs/textfield/RetargetingAdScaleStatus}AdScale aktivieren{/s}',
+				name: 'RetargetingAdScaleStatus',
+				store: new Ext.data.ArrayStore({
+					fields: ['id', 'name'],
+					data: [[1, 'ja'], [0, 'nein']]
+				}),
+				supportText: 'Ist dies aktiviert, so wird der Retargeting Anbieter AdScale verwendet.'
 			}]
 		}]
 	}

@@ -107,6 +107,12 @@ class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_
         if (isset($parent_id))
 		{
             $cat = Shopware()->Modules()->Categories()->sGetCategoryContent($parent_id);
+			
+			$sql = "SELECT path FROM s_core_rewrite_urls WHERE org_path = 'sViewport=cat&sCategory=".$parent_id."'";
+        	$rewrite_path = Shopware()->Db()->fetchOne($sql);
+        
+        	$rewrite_url = $this->Front()->Router()->assemble(array('module' => 'frontend', 'controller' => 'index'));
+        	$rewrite_url .= $rewrite_path;
 
             $sub_cats = Shopware()->Modules()->Categories()->sGetWholeCategoryTree($parent_id);
             
@@ -123,6 +129,7 @@ class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_
             $json_array = array(
                 'id' => $cat['id'],
                 'name' => $cat['name'],
+				'url' => $rewrite_url,
                 'google_product_category' => $cat['attribute']['attribute6'],
                 'children' => $subcatsarray
             );
@@ -400,8 +407,7 @@ class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_
         $sql = "SELECT path FROM s_core_rewrite_urls WHERE org_path = 'sViewport=detail&sArticle=".$products_id."'";
         $rewrite_path = Shopware()->Db()->fetchOne($sql);
         
-        $rewrite_url = 'http://'.Shopware()->Shop()->getHost();
-        $rewrite_url .=Shopware()->Shop()->getBaseUrl().'/';
+        $rewrite_url = $this->Front()->Router()->assemble(array('module' => 'frontend', 'controller' => 'index'));
         $rewrite_url .= $rewrite_path;
 
         if ($product['sUpcoming']==0)

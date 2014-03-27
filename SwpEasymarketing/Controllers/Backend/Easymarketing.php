@@ -114,6 +114,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		$config->setAPIToken($this->Request()->APIToken);
 		$config->setRootCategoryID($this->Request()->RootCategoryID);
 		$config->setShowFacebookLikeBadge($this->Request()->ShowFacebookLikeBadge);
+		$config->setRetargetingAdScaleStatus($this->Request()->RetargetingAdScaleStatus);
 		
 		// execute the setup of the plugin
 		$this->executeSetup();

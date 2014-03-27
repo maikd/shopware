@@ -48,6 +48,12 @@ Ext.define('Shopware.apps.Easymarketing.controller.Configs', {
 	
 	onUpdateOverview: function(view)
 	{
+		if (Ext.LoadMask && view.loadingMessage) {
+    		Ext.apply(Ext.LoadMask.prototype, {
+        		msg: view.loadingMessage
+    		});
+		}
+		
 		view.setLoading(true);
 		view.main.configsStore.load({
 			callback: function(data, action)

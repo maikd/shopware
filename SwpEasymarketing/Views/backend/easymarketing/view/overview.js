@@ -12,6 +12,7 @@ Ext.define('Shopware.apps.Easymarketing.view.Overview', {
 	border: false,
 	isBuiltView: false,
 	autoScroll: true,
+	loadingMessage: 'Übersicht wird aktualisiert...',
 
 	defaults: {
 		anchor: '100%',
@@ -132,12 +133,17 @@ Ext.define('Shopware.apps.Easymarketing.view.Overview', {
 			{
 				xtype: 'displayfield',
 				fieldLabel: '{s name=easymarketing/view/configs/textfield/RetargetingStatus}Retargeting - AdScale aktiv{/s}',
-				name: 'RetargetingAdScaleID',
+				name: 'RetargetingAdScaleStatus',
 				renderer: function(value)
 				{
-					if (value > 0)
+					if (value == 1)
 					{
-						return Ext.String.format('<div style="color:#3C6">&#10003;</div>');
+						if(me.configs.get('RetargetingAdScaleID') != '')
+						{
+							return Ext.String.format('<div style="color:#3C6">&#10003;</div>');
+						} else {
+							return Ext.String.format('<div style="color:#C00">keine AdScale-ID hinterlegt</div>');
+						}
 					} else {
 						return Ext.String.format('<div style="color:#C00">&#10006;</div>');
 					}

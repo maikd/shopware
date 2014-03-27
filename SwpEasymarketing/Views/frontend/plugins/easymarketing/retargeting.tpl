@@ -3,7 +3,7 @@
 {* ----- TRACKING-CODE FOR HOME PAGE ----- *}
 {if $Controller == "index"}
 
-{if !empty($EasymarketingConfig.RetargetingAdScaleID)}
+{if $EasymarketingConfig.RetargetingAdScaleStatus == 1 && !empty($EasymarketingConfig.RetargetingAdScaleID)}
 <script type="text/javascript">
 {literal}
 	window.adscaleProductViews = window.adscaleProductViews ? window.adscaleProductViews : []; 
@@ -27,7 +27,7 @@
 {* ----- TRACKING-CODE FOR ARTICLE DETAILPAGE ----- *}
 {if $Controller == "detail"}
 
-{if !empty($EasymarketingConfig.RetargetingAdScaleID)}
+{if $EasymarketingConfig.RetargetingAdScaleStatus == 1 && !empty($EasymarketingConfig.RetargetingAdScaleID)}
 <script type="text/javascript">
 {literal}
 	window.adscaleProductViews = window.adscaleProductViews ? window.adscaleProductViews : []; 
@@ -51,7 +51,7 @@
 {* ----- TRACKING-CODE FOR CATEGORY LISTING ----- *}
 {if $Controller == "listing"}
 
-{if !empty($EasymarketingConfig.RetargetingAdScaleID)}
+{if $EasymarketingConfig.RetargetingAdScaleStatus == 1 && !empty($EasymarketingConfig.RetargetingAdScaleID)}
 <script type="text/javascript">
 {literal}
 	window.adscaleProductViews = window.adscaleProductViews ? window.adscaleProductViews : []; 
@@ -75,7 +75,7 @@
 {* ----- TRACKING-CODE FOR BASKET IF BASKETAMOUNT > 0 ----- *}
 {if $sBasket.content && !$sAmount == "0" && !$sOrderNumber}
             
-{if !empty($EasymarketingConfig.RetargetingAdScaleID)}
+{if $EasymarketingConfig.RetargetingAdScaleStatus == 1 && !empty($EasymarketingConfig.RetargetingAdScaleID)}
 <script type="text/javascript">
 {literal}
 	window.adscaleProductViews = window.adscaleProductViews ? window.adscaleProductViews : []; 
@@ -99,7 +99,7 @@
 {* ----- TRACKING-CODE FOR CHECKOUT SUCCESS ----- *}
 {if $Controller == "checkout" && $sOrderNumber}
 
-{if !empty($EasymarketingConfig.RetargetingAdScaleID)}
+{if $EasymarketingConfig.RetargetingAdScaleStatus == 1 && !empty($EasymarketingConfig.RetargetingAdScaleID)}
 <script type="text/javascript">
 {literal}
 	window.adscaleProductViews = window.adscaleProductViews ? window.adscaleProductViews : []; 
