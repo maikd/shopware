@@ -13,7 +13,7 @@ Falls Sie bereits das Modul installiert haben, so deaktivieren Sie dieses bevor 
 ## Konfiguration vom Modul
 		
 Um die Konfiguration vom Modul vornehmen zu können, laden Sie das Backend neu. 
-Gehen Sie nun über das Menü `Marketing`
+Gehen Sie nun über das Menü `Marketing`.
 Hier gibt es nun einen weiteren Eintrag mit dem Titel `Easymarketing`, welchen Sie nun anklicken.
 
 Das Modul wird nun in einem Fenster innerhalb des Backends geöffnet. 
