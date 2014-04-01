@@ -52,7 +52,7 @@ class Shopware_Plugins_Frontend_SwpEasymarketing_Bootstrap extends Shopware_Comp
 	 */	 
     public function getVersion()
     {
-        return '4.1.0';
+        return '4.1.1';
     }
 
 	/*
@@ -298,6 +298,7 @@ class Shopware_Plugins_Frontend_SwpEasymarketing_Bootstrap extends Shopware_Comp
 		$view->EasymarketingConfig = $config;
         $view->addTemplateDir($this->Path() . 'Views/');
 		$args->getSubject()->View()->extendsTemplate('frontend/plugins/easymarketing/retargeting.tpl');
+		$args->getSubject()->View()->extendsTemplate('frontend/plugins/easymarketing/leadtracker.tpl');
 	}
 	
 	/*

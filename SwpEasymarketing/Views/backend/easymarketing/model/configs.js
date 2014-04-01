@@ -33,6 +33,10 @@ Ext.define('Shopware.apps.Easymarketing.model.Configs', {
 			type: 'integer',
 			defaultValue: 0
 		}, {
+			name: 'LeadTrackerStatus',
+			type: 'integer',
+			defaultValue: 0
+		}, {
 			name: 'GoogleSiteVerificationStatus',
 			type: 'integer',
 			defaultValue: 0

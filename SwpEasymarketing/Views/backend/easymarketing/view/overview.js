@@ -118,6 +118,20 @@ Ext.define('Shopware.apps.Easymarketing.view.Overview', {
 			},
 			{
 				xtype: 'displayfield',
+				fieldLabel: '{s name=easymarketing/view/configs/textfield/LeadTrackerStatus}Lead Tracker eingebaut{/s}',
+				name: 'LeadTrackerStatus',
+				renderer: function(value)
+				{
+					if (value == 1)
+					{
+						return Ext.String.format('<div style="color:#3C6">&#10003;</div>');
+					} else {
+						return Ext.String.format('<div style="color:#C00">&#10006;</div>');
+					}
+				}
+			},
+			{
+				xtype: 'displayfield',
 				fieldLabel: '{s name=easymarketing/view/configs/textfield/GoogleSiteVerificationStatus}Google Site Verifikation Status{/s}',
 				name: 'GoogleSiteVerificationStatus',
 				renderer: function(value)

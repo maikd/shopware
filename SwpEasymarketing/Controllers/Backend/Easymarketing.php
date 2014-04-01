@@ -230,6 +230,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		
 		$this->setAPIEndpoints();
 		$this->getGoogleConversionTracker();
+		$this->getLeadTracker();
 		$this->performGoogleSiteVerification();
 		$this->getExtractionStatus();
 		$this->getFacebookBadge();
@@ -246,7 +247,8 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		$parameters = array(
 						'ConfigureEndpointsStatus',
 						'GoogleConversionTrackerStatus',
-						'GoogleSiteVerificationStatu',
+						'LeadTrackerStatus',
+						'GoogleSiteVerificationStatus',
 						'FacebookLikeBadgeCode',
 						'RetargetingAdScaleID'
 					);
@@ -303,6 +305,22 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 			$config->setGoogleConversionTrackerImg($response['data']['img']);
 			
 			$config->setGoogleConversionTrackerStatus(1);
+		}
+	}
+	
+	/*
+	 * get the lead tracker
+	 */
+	protected function getLeadTracker()
+	{
+		$config = EasymarketingConfig::getInstance();
+		
+		$response = APIClient::getInstance()->performRequest('lead_tracker');
+		
+		if($response['status'] == 200)
+		{
+			$config->setLeadTrackerCode($response['data']['code']);
+			$config->setLeadTrackerStatus(1);
 		}
 	}
 	

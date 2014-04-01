@@ -455,13 +455,16 @@ class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_
             'categories' => $prod2cats,
             'availability' => $availibility,
             'price' => floatval(str_replace(',','.',$product['price'])),
+			'rrp' => $pseudoprice,
 			'discount_absolute' => $discout_absolute, 
             'url' => $rewrite_url,
             'description' => $product['description_long'],
             'currency' => $currency,
             'shipping' => $prod_shipping_array,
             'margin' => 0.56,
-            'gtin' => $product['ean']
+            'gtin' => $product['ean'],
+			'brand' => $product['supplierName'],
+			'mpn' => $product['ordernumber']
         );
 		
         if (count($variant_prods_array) > 0)
