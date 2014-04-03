@@ -29,8 +29,8 @@
  * @version    25.03.2014 - 17:22
  */
 
-require_once(__DIR__ . '/Components/Config/EasymarketingConfig.class.php');
-require_once(__DIR__ . '/Components/API/APIClient.class.php');
+require_once(dirname(__FILE__) . '/Components/Config/EasymarketingConfig.class.php');
+require_once(dirname(__FILE__) . '/Components/API/APIClient.class.php');
 
 class Shopware_Plugins_Frontend_SwpEasymarketing_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {

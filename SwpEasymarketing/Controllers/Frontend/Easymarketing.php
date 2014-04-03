@@ -29,7 +29,7 @@
  * @version    25.03.2014 - 17:22
  */
  
-require_once(__DIR__ . '/../../Components/Config/EasymarketingConfig.class.php');
+require_once(dirname(__FILE__) . '/../../Components/Config/EasymarketingConfig.class.php');
 
 class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_Action
 {

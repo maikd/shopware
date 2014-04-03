@@ -178,7 +178,12 @@ Ext.define('Shopware.apps.Easymarketing.view.Overview', {
 				{
 					if(value == '')
 					{
-						return Ext.String.format('Daten wurden bisher noch nicht abgerufen');
+						if(me.configs.get('EasymarketingLastCrawlCategoriesCount') > 0)
+						{
+							return Ext.String.format('Erster Abruf der Daten ist erfolgt');
+						} else {
+							return Ext.String.format('Daten wurden bisher noch nicht abgerufen');
+						}
 					} else {
 						return Ext.String.format(Ext.util.Format.date(me.configs.get('EasymarketingLastCrawlDate'), 'd.m.Y - H:i:s') + ' Uhr');
 					}

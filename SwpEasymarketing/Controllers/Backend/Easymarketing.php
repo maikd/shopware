@@ -29,9 +29,9 @@
  * @version    25.03.2014 - 17:22
  */
 
-require_once(__DIR__ . '/../../Components/Config/EasymarketingConfig.class.php');
-require_once(__DIR__ . '/../../Components/Utilis/EasymarketingHelper.class.php');
-require_once(__DIR__ . '/../../Components/API/APIClient.class.php');
+require_once(dirname(__FILE__) . '/../../Components/Config/EasymarketingConfig.class.php');
+require_once(dirname(__FILE__) . '/../../Components/Utilis/EasymarketingHelper.class.php');
+require_once(dirname(__FILE__) . '/../../Components/API/APIClient.class.php');
 
 class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Backend_ExtJs 
 {
@@ -63,7 +63,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		$extractionStatusData = $this->getExtractionStatus();
 		
 		if($extractionStatusData)
-		{
+		{	
 			$config->setEasymarketingLastCrawlDate($extractionStatusData['updated_at']);
 			$config->setEasymarketingLastCrawlCategoriesCount($extractionStatusData['num_categories']);
 			$config->setEasymarketingLastCrawlProductsCount($extractionStatusData['num_products']);
