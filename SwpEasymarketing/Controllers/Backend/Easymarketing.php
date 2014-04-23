@@ -386,6 +386,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		if($response['status'] == 200)
 		{
 			EasymarketingConfig::getInstance()->setRetargetingAdScaleID($response['data']['adscale_id']);
+			EasymarketingConfig::getInstance()->setRetargetingAdScaleConversionID($response['data']['conversion_id']);
 		}
 	}
     
