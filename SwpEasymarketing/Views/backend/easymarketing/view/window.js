@@ -9,7 +9,7 @@ Ext.define('Shopware.apps.Easymarketing.view.Window', {
 	stateful: true,
 	layout: 'fit',
 	width: 650,
-	height: 550,
+	height: 600,
 	autoShow: true,
 	title: '{s name=easymarketing/view/window/title}Easymarketing{/s}',
 	iconCls: 'easymarketing-icon',

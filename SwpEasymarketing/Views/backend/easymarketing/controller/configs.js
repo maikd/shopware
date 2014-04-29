@@ -11,10 +11,11 @@ Ext.define('Shopware.apps.Easymarketing.controller.Configs', {
 
 		me.control({
 			'easymarketing-overview': {
-				update: me.onUpdateOverview
+				update: me.onUpdateOverview,
+				updateEasymarketingData: me.onUpdateEasymarketingData
 			},
 			'easymarketing-configs': {
-				save: me.onSave,
+				save: me.onSave
 			}
 		});
 
@@ -44,6 +45,35 @@ Ext.define('Shopware.apps.Easymarketing.controller.Configs', {
 				}
 			}
 		});
+	},
+	
+	onUpdateEasymarketingData: function(view)
+	{
+		if (Ext.LoadMask) {
+    		Ext.apply(Ext.LoadMask.prototype, {
+        		msg: 'Die Daten werden erneut von Easymarketing abgerufen...'
+    		});
+		}	
+		
+		view.setLoading(true);	
+		
+		Ext.Ajax.request({
+							url: '{url action=updateEasymarketingData}',
+							callback: function(options, success, xhr)
+							{
+								Shopware.Notification.createGrowlMessage('Aktion ausgeführt', 'Die Daten wurden erneut von Easymarketing abgerufen.');
+								
+								view.setLoading(true);
+								view.main.configsStore.load({
+																callback: function(data, action)
+																{
+																	view.configs = data[0];
+																	view.loadRecord(data[0]);
+																	view.setLoading(false);
+																}
+															});
+							}
+						});
 	},
 	
 	onUpdateOverview: function(view)

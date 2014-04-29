@@ -52,7 +52,7 @@ class Shopware_Plugins_Frontend_SwpEasymarketing_Bootstrap extends Shopware_Comp
 	 */	 
     public function getVersion()
     {
-        return '4.1.3';
+        return '4.1.4';
     }
 
 	/*
