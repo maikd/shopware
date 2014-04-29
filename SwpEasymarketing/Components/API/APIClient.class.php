@@ -111,6 +111,7 @@ class APIClient
 		
         curl_setopt($ch, CURLOPT_URL, $this->APIURL.'/'.$action.'?'.$url_param_string.'&access_token='.$this->APIToken);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Accept: application/json'));
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
         $response = curl_exec($ch);
 		$response_infos = curl_getinfo($ch);

@@ -443,7 +443,7 @@ class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_
         }
 		
 		$price = floatval(str_replace(',','.',$product['price']));
-		$pseudoprice = (isset($product['pseudoprice'])) ? floatval(str_replace(',','.',$product['pseudoprice'])) : 0;
+		$pseudoprice = (isset($product['pseudoprice'])  && $product['pseudoprice'] > 0) ? floatval(str_replace(',','.',$product['pseudoprice'])) : $price;
 		$discout_absolute = ($pseudoprice > $price) ? ($pseudoprice - $price) : 0;
 
         $prod_shipping_array = $this->getShippingArray($product);
@@ -454,8 +454,8 @@ class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_
             'condition' => 'new',
             'categories' => $prod2cats,
             'availability' => $availibility,
-            'price' => floatval(str_replace(',','.',$product['price'])),
-			'rrp' => $pseudoprice,
+            'price' => $price,
+			'rrp' => floatval($pseudoprice),
 			'discount_absolute' => $discout_absolute, 
             'url' => $rewrite_url,
             'description' => $product['description_long'],

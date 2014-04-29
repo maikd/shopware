@@ -32,6 +32,14 @@ Ext.define('Shopware.apps.Easymarketing.view.Overview', {
 			items: ['->', {
 				xtype: 'button',
 				cls: 'secondary',
+				text: 'Daten erneut abrufen',
+				handler: function()
+				{
+					me.fireEvent('updateEasymarketingData', me);
+				}
+			}, {
+				xtype: 'button',
+				cls: 'primary',
 				text: 'Übersicht aktualisieren',
 				handler: function()
 				{
@@ -59,7 +67,7 @@ Ext.define('Shopware.apps.Easymarketing.view.Overview', {
 
 	registerEvents: function()
 	{
-		this.addEvents('save', 'update');
+		this.addEvents('save', 'update', 'updateEasymarketingData');
 	},
 
 	buildView: function()
@@ -104,11 +112,11 @@ Ext.define('Shopware.apps.Easymarketing.view.Overview', {
 			},
 			{
 				xtype: 'displayfield',
-				fieldLabel: '{s name=easymarketing/view/configs/textfield/GoogleConversionTrackerStatus}Conversion Tracker eingebaut{/s}',
-				name: 'GoogleConversionTrackerStatus',
+				fieldLabel: '{s name=easymarketing/view/configs/textfield/GoogleTrackingStatus}Google Tracking aktiv{/s}',
+				name: 'GoogleTrackingStatus',
 				renderer: function(value)
 				{
-					if (value == 1)
+					if (me.configs.get('ActivateGoogleTracking') == 1 && value == 1)
 					{
 						return Ext.String.format('<div style="color:#3C6">&#10003;</div>');
 					} else {
@@ -117,32 +125,51 @@ Ext.define('Shopware.apps.Easymarketing.view.Overview', {
 				}
 			},
 			{
-				xtype: 'displayfield',
-				fieldLabel: '{s name=easymarketing/view/configs/textfield/LeadTrackerStatus}Lead Tracker eingebaut{/s}',
-				name: 'LeadTrackerStatus',
-				renderer: function(value)
-				{
-					if (value == 1)
-					{
-						return Ext.String.format('<div style="color:#3C6">&#10003;</div>');
-					} else {
-						return Ext.String.format('<div style="color:#C00">&#10006;</div>');
-					}
-				}
-			},
-			{
-				xtype: 'displayfield',
-				fieldLabel: '{s name=easymarketing/view/configs/textfield/GoogleSiteVerificationStatus}Google Site Verifikation Status{/s}',
-				name: 'GoogleSiteVerificationStatus',
-				renderer: function(value)
-				{
-					if (value == 1)
-					{
-						return Ext.String.format('<div style="color:#3C6">&#10003;</div>');
-					} else {
-						return Ext.String.format('<div style="color:#C00">&#10006;</div>');
-					}
-				}
+				xtype: 'fieldcontainer',
+				fieldLabel: 'Google Site Verifikation Status',
+				layout: 'hbox',
+				items: [{
+							xtype: 'displayfield',
+							name: 'GoogleSiteVerificationStatus',
+							renderer: function(value)
+							{
+								if (value == 1)
+								{
+									return Ext.String.format('<div style="color:#3C6">&#10003;</div>');
+								} else {
+									return Ext.String.format('<div style="color:#C00">&#10006;</div>');
+								}
+							}
+						},
+						{
+							xtype: 'button',
+							text: 'Google Site Verifikation durchführen / aufheben',
+							cls: 'secondary small',
+							handler: function()
+							{
+								if(me.configs.get('GoogleSiteVerificationStatus') == 1)
+								{
+									var message = 'Möchten Sie die Google Site Verifikation wirklich aufheben?';
+								}  else {
+									var message = 'Ich stimme zu, dass Google easymarketing bei meiner URL-Verifikation als weiteren "Inhaber" einträgt, damit easymarketing meine Daten für Google Shopping über die Schnittstelle pflegen und auslesen kann. Ich kann diese Zustimmung natürlich jederzeit widerrufen. easymarketing wird meine Daten unter keinen Umständen zu anderen Zwecken als meiner Kampagnen-Steuerung verwenden, weitergeben oder bei sich speichern.';
+								}
+			
+								Ext.Msg.confirm('Google Site Verifikation', message, function(button)
+								{
+									if (button === 'yes')
+									{
+										Ext.Ajax.request({
+															url: (me.configs.get('GoogleSiteVerificationStatus') == 1) ? '{url action=destroyGoogleSiteVerification}' : '{url action=performGoogleSiteVerification}',
+															callback: function(options, success, xhr)
+															{
+																Shopware.Notification.createGrowlMessage('Aktion ausgeführt', 'Die Änderungen an der Google Site Verifikation wurden durchgeführt.');
+																me.fireEvent('update', me);
+															}
+														});
+									}
+								});
+							}
+						}]
 			},
 			{
 				xtype: 'displayfield',

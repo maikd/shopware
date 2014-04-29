@@ -13,6 +13,10 @@ Ext.define('Shopware.apps.Easymarketing.model.Configs', {
 			type: 'integer',
 			defaultValue: 0
 		}, {
+			name: 'ActivateGoogleTracking',
+			type: 'integer',
+			defaultValue: 0
+		}, {
 			name: 'ShowFacebookLikeBadge',
 			type: 'integer',
 			defaultValue: 0
@@ -29,11 +33,7 @@ Ext.define('Shopware.apps.Easymarketing.model.Configs', {
 			type: 'integer',
 			defaultValue: 0
 		}, {
-			name: 'GoogleConversionTrackerStatus',
-			type: 'integer',
-			defaultValue: 0
-		}, {
-			name: 'LeadTrackerStatus',
+			name: 'GoogleTrackingStatus',
 			type: 'integer',
 			defaultValue: 0
 		}, {

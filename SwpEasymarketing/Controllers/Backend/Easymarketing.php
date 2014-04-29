@@ -113,11 +113,12 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		$config->setAPIStatus((int)$validAPIToken);
 		$config->setAPIToken($this->Request()->APIToken);
 		$config->setRootCategoryID($this->Request()->RootCategoryID);
+		$config->setActivateGoogleTracking($this->Request()->ActivateGoogleTracking);
 		$config->setShowFacebookLikeBadge($this->Request()->ShowFacebookLikeBadge);
 		$config->setRetargetingAdScaleStatus($this->Request()->RetargetingAdScaleStatus);
 		
-		// execute the setup of the plugin
-		$this->executeSetup();
+		// update data of the plugin
+		$this->updateEasymarketingDataAction();
 	
 		$this->View()->assign(array(
 			'success' => true,
@@ -146,6 +147,20 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		));
 	}
 	
+	/*
+	 * update data
+	 */
+	public function updateEasymarketingDataAction()
+	{
+		$this->resetExistingConfigs();
+		
+		$this->setAPIEndpoints();
+		$this->getGoogleTrackingPixel();
+		$this->getExtractionStatus();
+		$this->getFacebookBadge();
+		$this->getRetargetingIds();
+	}
+	 
 	/*
 	 * get the shop root category id
 	 *
@@ -220,22 +235,6 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 			return false;
 		}			
 	}
-
-	/*
-	 * execute the setup
-	 */
-	protected function executeSetup()
-	{
-		$this->resetExistingConfigs();
-		
-		$this->setAPIEndpoints();
-		$this->getGoogleConversionTracker();
-		$this->getLeadTracker();
-		$this->performGoogleSiteVerification();
-		$this->getExtractionStatus();
-		$this->getFacebookBadge();
-		$this->getRetargetingIds();
-	}
 	
 	/* 
 	 * reset the existing configuration, if the setup is called again
@@ -246,9 +245,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		
 		$parameters = array(
 						'ConfigureEndpointsStatus',
-						'GoogleConversionTrackerStatus',
-						'LeadTrackerStatus',
-						'GoogleSiteVerificationStatus',
+						'GoogleTrackingStatus',
 						'FacebookLikeBadgeCode',
 						'RetargetingAdScaleID'
 					);
@@ -291,43 +288,37 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 	}
 	
 	/*
-	 * get the google conversion tracker
+	 * get the google tracking pixel
 	 */
-	protected function getGoogleConversionTracker()
+	protected function getGoogleTrackingPixel()
 	{
 		$config = EasymarketingConfig::getInstance();
 		
-		$response = APIClient::getInstance()->performRequest('conversion_tracker');
+		$response_ct = APIClient::getInstance()->performRequest('conversion_tracker');
 		
-		if($response['status'] == 200)
+		if($response_ct['status'] == 200)
 		{
-			$config->setGoogleConversionTrackerCode($response['data']['code']);
-			$config->setGoogleConversionTrackerImg($response['data']['img']);
-			
-			$config->setGoogleConversionTrackerStatus(1);
+			$config->setGoogleConversionTrackerCode($response_ct['data']['code']);
+			$config->setGoogleConversionTrackerImg($response_ct['data']['img']);
 		}
-	}
-	
-	/*
-	 * get the lead tracker
-	 */
-	protected function getLeadTracker()
-	{
-		$config = EasymarketingConfig::getInstance();
 		
-		$response = APIClient::getInstance()->performRequest('lead_tracker');
+		$response_lt = APIClient::getInstance()->performRequest('lead_tracker');
 		
-		if($response['status'] == 200)
+		if($response_lt['status'] == 200)
 		{
-			$config->setLeadTrackerCode($response['data']['code']);
-			$config->setLeadTrackerStatus(1);
+			$config->setLeadTrackerCode($response_lt['data']['code']);
+		}
+		
+		if($response_ct['status'] == 200 && $response_lt['status'] == 200)
+		{
+			$config->setGoogleTrackingStatus(1);
 		}
 	}
 	
 	/*
 	 * perform google site verification
 	 */
-	protected function performGoogleSiteVerification()
+	public function performGoogleSiteVerificationAction()
 	{
 		$config = EasymarketingConfig::getInstance();
 		
@@ -345,9 +336,20 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 			
 			if($response['status'] == 200)
 			{
-				$config->setGoogleSiteVerificationStatus($status);
+				$config->setGoogleSiteVerificationStatus(1);
 			}
 		}
+	}
+	
+	/*
+	 * destory google site verification
+	 */
+	public function destroyGoogleSiteVerificationAction()
+	{
+		$config = EasymarketingConfig::getInstance();
+		
+		$config->setGoogleSiteVerificationMetaTag('');
+		$config->setGoogleSiteVerificationStatus(0);
 	}
 	
 	/*
