@@ -90,7 +90,7 @@
 <script type="text/javascript" src="//js.adscale.de/pbr-a.js"></script>
 
 <!-- adscale pixel -->
-<ins style="display: none;" class="adscale-rt" data-accountId="{$EasymarketingConfig.RetargetingAdScaleConversionID}" data-pixelName="Basket"></ins> 
+<ins style="display: none;" class="adscale-rt" data-accountId="{$EasymarketingConfig.RetargetingAdScaleID}" data-pixelName="Basket"></ins> 
 <script async defer type="text/javascript" src="//js.adscale.de/rt-a.js"></script>
 {/if}
 
