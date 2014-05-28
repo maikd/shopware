@@ -35,7 +35,7 @@
 		"aid":"{/literal}{$EasymarketingConfig.RetargetingAdScaleID}{literal}",
 		"productIds": ["{/literal}{$sArticle.articleID|escape:"javascript"}{literal}"],
 		"categoryIds": [{/literal}{foreach name=breadcrumb from=$sBreadcrumb item=breadcrumb}{if $smarty.foreach.breadcrumb.iteration < $smarty.foreach.breadcrumb.total}"{$breadcrumb.name}"{if ($smarty.foreach.breadcrumb.total - $smarty.foreach.breadcrumb.iteration) >= 2},{/if}{/if}{/foreach}{literal}],
-		"pageTypes": ["products"],
+		"pageTypes": ["product"],
 }); 
 {/literal}
 </script>
@@ -59,7 +59,7 @@
 		"aid":"{/literal}{$EasymarketingConfig.RetargetingAdScaleID}{literal}",
 		"productIds": [""],
 		"categoryIds": [{/literal}{foreach name=breadcrumb from=$sBreadcrumb item=breadcrumb}"{$breadcrumb.name}"{if !$smarty.foreach.breadcrumb.last},{/if}{/foreach}{literal}],
-		"pageTypes": ["categories"],
+		"pageTypes": ["category"],
 }); 
 {/literal}
 </script>
