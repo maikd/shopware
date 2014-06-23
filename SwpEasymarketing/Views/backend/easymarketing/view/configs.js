@@ -129,7 +129,15 @@ Ext.define('Shopware.apps.Easymarketing.view.Configs', {
 					fields: ['id', 'name'],
 					data: [[1, 'ja'], [0, 'nein']]
 				}),
-				supportText: 'Ist dies aktiviert, so werden die Google Trackingpixel implementiert im Webshop.'
+				supportText: 'Ist dies aktiviert, so werden die Google Trackingpixel im Webshop implementiert.'
+			}, {
+				fieldLabel: '{s name=easymarketing/view/configs/textfield/ActivateFacebookTracking}Facebook Tracking aktivieren{/s}',
+				name: 'ActivateFacebookTracking',
+				store: new Ext.data.ArrayStore({
+					fields: ['id', 'name'],
+					data: [[1, 'ja'], [0, 'nein']]
+				}),
+				supportText: 'Ist dies aktiviert, so werden die Facebook Trackingpixel im Webshop implementiert.'
 			}, {
 				fieldLabel: '{s name=easymarketing/view/configs/textfield/ShowFacebookLikeBadge}Zeige Facebook Like Button{/s}',
 				name: 'ShowFacebookLikeBadge',

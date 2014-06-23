@@ -2,10 +2,17 @@
  
 {* ----- TRACKING-CODE FOR BASKET IF BASKETAMOUNT > 0 AND CONTACT PAGE ----- *}
 {if ($sBasket.content && !$sAmount == "0" && !$sOrderNumber) || $Controller == "forms"}
-            
-{if $EasymarketingConfig.ActivateGoogleTracking == 1 && $EasymarketingConfig.GoogleTrackingStatus == 1 && !empty($EasymarketingConfig.LeadTrackerCode)}
-{$EasymarketingConfig.LeadTrackerCode}
-{$EasymarketingConfig.LeadTrackerImg}
+
+{if $EasymarketingConfig.TrackingStatus == 1}
+
+{if $EasymarketingConfig.ActivateGoogleTracking == 1 && !empty($EasymarketingConfig.GoogleLeadTrackerCode)}
+{$EasymarketingConfig.GoogleLeadTrackerCode}
+{/if}
+
+{if $EasymarketingConfig.ActivateFacebookTracking == 1 && !empty($EasymarketingConfig.FacebookLeadTrackerCode)}
+{$EasymarketingConfig.FacebookLeadTrackerCode}
+{/if}
+
 {/if}
 
 {/if}

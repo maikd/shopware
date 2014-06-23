@@ -114,6 +114,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		$config->setAPIToken($this->Request()->APIToken);
 		$config->setRootCategoryID($this->Request()->RootCategoryID);
 		$config->setActivateGoogleTracking($this->Request()->ActivateGoogleTracking);
+		$config->setActivateFacebookTracking($this->Request()->ActivateFacebookTracking);
 		$config->setShowFacebookLikeBadge($this->Request()->ShowFacebookLikeBadge);
 		$config->setRetargetingAdScaleStatus($this->Request()->RetargetingAdScaleStatus);
 		
@@ -155,7 +156,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		$this->resetExistingConfigs();
 		
 		$this->setAPIEndpoints();
-		$this->getGoogleTrackingPixel();
+		$this->getTrackingPixel();
 		$this->getExtractionStatus();
 		$this->getFacebookBadge();
 		$this->getRetargetingIds();
@@ -245,7 +246,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		
 		$parameters = array(
 						'ConfigureEndpointsStatus',
-						'GoogleTrackingStatus',
+						'TrackingStatus',
 						'FacebookLikeBadgeCode',
 						'RetargetingAdScaleID'
 					);
@@ -288,9 +289,9 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 	}
 	
 	/*
-	 * get the google tracking pixel
+	 * get the tracking pixel
 	 */
-	protected function getGoogleTrackingPixel()
+	protected function getTrackingPixel()
 	{
 		$config = EasymarketingConfig::getInstance();
 		
@@ -299,19 +300,20 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		if($response_ct['status'] == 200)
 		{
 			$config->setGoogleConversionTrackerCode($response_ct['data']['code']);
-			$config->setGoogleConversionTrackerImg($response_ct['data']['img']);
+			$config->setFacebookConversionTrackerCode($response_ct['data']['fb_code']);
 		}
 		
 		$response_lt = APIClient::getInstance()->performRequest('lead_tracker');
 		
 		if($response_lt['status'] == 200)
 		{
-			$config->setLeadTrackerCode($response_lt['data']['code']);
+			$config->setGoogleLeadTrackerCode($response_lt['data']['code']);
+			$config->setFacebookLeadTrackerCode($response_lt['data']['fb_code']);
 		}
 		
 		if($response_ct['status'] == 200 && $response_lt['status'] == 200)
 		{
-			$config->setGoogleTrackingStatus(1);
+			$config->setTrackingStatus(1);
 		}
 	}
 	
