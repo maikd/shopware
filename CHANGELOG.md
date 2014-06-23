@@ -1,5 +1,8 @@
 # Changelog - EASYMARKETING Shopware Module
 
+### Version 4.1.7
+- add Facebook tracking pixel
+
 ### Version 4.1.6
 - fix AdScale retargeting pixel for categories and products
 
