@@ -113,10 +113,24 @@ Ext.define('Shopware.apps.Easymarketing.view.Overview', {
 			{
 				xtype: 'displayfield',
 				fieldLabel: '{s name=easymarketing/view/configs/textfield/GoogleTrackingStatus}Google Tracking aktiv{/s}',
-				name: 'GoogleTrackingStatus',
+				name: 'ActivateGoogleTracking',
 				renderer: function(value)
 				{
-					if (me.configs.get('ActivateGoogleTracking') == 1 && value == 1)
+					if (value == 1 && me.configs.get('TrackingStatus') == 1)
+					{
+						return Ext.String.format('<div style="color:#3C6">&#10003;</div>');
+					} else {
+						return Ext.String.format('<div style="color:#C00">&#10006;</div>');
+					}
+				}
+			},
+			{
+				xtype: 'displayfield',
+				fieldLabel: '{s name=easymarketing/view/configs/textfield/FacebookTrackingStatus}Facebook Tracking aktiv{/s}',
+				name: 'ActivateFacebookTracking',
+				renderer: function(value)
+				{
+					if (value == 1 && me.configs.get('TrackingStatus') == 1)
 					{
 						return Ext.String.format('<div style="color:#3C6">&#10003;</div>');
 					} else {

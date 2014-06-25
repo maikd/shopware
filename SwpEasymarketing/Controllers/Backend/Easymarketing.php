@@ -277,7 +277,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
             'best_products_api_endpoint' => $website_url.'easymarketing_api/best_products',
             'new_products_api_endpoint' => $website_url.'easymarketing_api/new_products',
             'shopsystem_info_api_endpoint' => $website_url.'easymarketing_api/shopsystem_info',
-            'api_setup_test_single_product_id' => Shopware()->Db()->fetchOne("SELECT id FROM s_articles WHERE active = 1 LIMIT 1")
+            'api_setup_test_single_product_id' => Shopware()->Db()->fetchOne("SELECT sacro.articleID AS id FROM s_articles_categories_ro sacro LEFT JOIN s_articles sa ON sa.id = sacro.articleID WHERE sa.active = 1 AND (sacro.categoryID = '".$config->getRootCategoryID()."' OR sacro.parentCategoryID = '".$config->getRootCategoryID()."') GROUP BY sacro.articleID ORDER BY sacro.articleID LIMIT 1")
         );
 		
 		$response = APIClient::getInstance()->performRequest('configure_endpoints', $params, 'POST');
