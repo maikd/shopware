@@ -32,7 +32,7 @@
 require_once(dirname(__FILE__) . '/Components/Config/EasymarketingConfig.class.php');
 require_once(dirname(__FILE__) . '/Components/API/APIClient.class.php');
 
-class Shopware_Plugins_Frontend_SwpEasymarketing_Bootstrap extends Shopware_Components_Plugin_Bootstrap
+class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {
 
 	/*

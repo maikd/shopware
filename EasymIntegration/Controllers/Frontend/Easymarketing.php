@@ -78,7 +78,7 @@ class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_
         $shopsystem = 'shopware';
         $shopsystem_human = Shopware()->App().' '.Shopware()->Config()->version;
         $shopsystem_version = Shopware()->Config()->version;
-        $api_version = Shopware_Plugins_Frontend_SwpEasymarketing_Bootstrap::getVersion();
+        $api_version = Shopware_Plugins_Frontend_EasymIntegration_Bootstrap::getVersion();
  
         $jsondata = array(
             'shopsystem' => $shopsystem,
