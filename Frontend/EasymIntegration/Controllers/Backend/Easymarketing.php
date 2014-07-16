@@ -33,14 +33,17 @@ require_once(dirname(__FILE__) . '/../../Components/Config/EasymarketingConfig.c
 require_once(dirname(__FILE__) . '/../../Components/Utilis/EasymarketingHelper.class.php');
 require_once(dirname(__FILE__) . '/../../Components/API/APIClient.class.php');
 
+/**
+ * Class Shopware_Controllers_Backend_Easymarketing is the plugin's controller implementation providing data from db and the easymarketing backend.
+ */
 class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Backend_ExtJs 
 {
 	
 	protected $WebsiteURL = '';
 	protected $Categories = array();
 	
-	/*
-	 * init
+	/**
+	 * initializes this controller
 	 */
     public function init() 
 	{
@@ -51,10 +54,8 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
         parent::init();
     }
     
-	/*
+	/**
 	 * get all configuration
-	 *
-	 * @return config
 	 */
     public function getConfigsAction()
 	{
@@ -82,7 +83,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		));
 	}
 	
-	/*
+	/**
 	 * save the configuration
 	 */
 	public function saveConfigsAction()
@@ -129,7 +130,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		));
 	}
 	
-	/*
+	/**
 	 * get all categories of the shop
 	 *
 	 * @return array
@@ -148,8 +149,8 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		));
 	}
 	
-	/*
-	 * update data
+	/**
+	 * update all data from the easymarketing backend
 	 */
 	public function updateEasymarketingDataAction()
 	{
@@ -162,7 +163,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		$this->getRetargetingIds();
 	}
 	 
-	/*
+	/**
 	 * get the shop root category id
 	 *
 	 * @return integer
@@ -177,7 +178,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		return $shop_data['category_id'];
 	}	
 	
-	/*
+	/**
 	 * get the category tree
 	 *
 	 * @params $parent_id (integer), $level (integer), $sub_category (boolean)
@@ -217,9 +218,10 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		}
 	}
 	
-	/*
-	 * check the api token
+	/**
+	 * retrieve the api token
 	 *
+     * @param $APIToken
 	 * @return boolean
 	 */
 	protected function checkAPIToken($APIToken)
@@ -237,7 +239,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		}			
 	}
 	
-	/* 
+	/**
 	 * reset the existing configuration, if the setup is called again
 	 */
 	protected function resetExistingConfigs()
@@ -257,8 +259,8 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		}
 	}
 	
-	/*
-	 * set the api endpoints
+	/**
+	 * set the api endpoints in the easymarketing backend
 	 */
 	protected function setAPIEndpoints()
 	{
@@ -288,8 +290,8 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		}
 	}
 	
-	/*
-	 * get the tracking pixel
+	/**
+	 * get the tracking pixel from the easymarketing backend
 	 */
 	protected function getTrackingPixel()
 	{
@@ -317,8 +319,8 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		}
 	}
 	
-	/*
-	 * perform google site verification
+	/**
+	 * perform google site verification in the easymarketing backend
 	 */
 	public function performGoogleSiteVerificationAction()
 	{
@@ -343,7 +345,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		}
 	}
 	
-	/*
+	/**
 	 * destory google site verification
 	 */
 	public function destroyGoogleSiteVerificationAction()
@@ -354,8 +356,8 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		$config->setGoogleSiteVerificationStatus(0);
 	}
 	
-	/*
-	 * get the extraction status
+	/**
+	 * get the extraction status from the easymarketing backend
 	 */
 	public function getExtractionStatus()
 	{
@@ -367,8 +369,8 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		}
 	}
 	
-	/*
-	 * get the facebook like badge
+	/**
+	 * get the facebook like badge from the easymarketing backend
 	 */
 	public function getFacebookBadge()
 	{
@@ -380,8 +382,8 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		}
 	}
 	
-	/*
-	 * get the retargeting ids
+	/**
+	 * get the retargeting ids from the easymarketing backend
 	 */
 	protected function getRetargetingIds()
 	{

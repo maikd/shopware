@@ -31,19 +31,23 @@
  
 require_once(dirname(__FILE__) . '/../../Components/Config/EasymarketingConfig.class.php');
 
+/**
+ * Class Shopware_Controllers_Frontend_Easymarketingapi implements the REST interface requested by the easymarketing
+ * backend to extract products and categories as JSON.
+ */
 class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_Action
 {
 
-	/*
-	 * index action
+	/**
+	 * index action - nothing to do
 	 */
     public function indexAction()
 	{
 		// do nothing
     }
     
-	/*
-	 * check the given shop token
+	/**
+	 * validates the given shop token if access is granted.
 	 */
     private function checkShopToken() 
 	{	
@@ -68,8 +72,8 @@ class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_
         return true;
     }
     
-	/*
-	 * get the shopsystem infos
+	/**
+	 * deliver the shopsystem infos
 	 */
     public function shopsystemInfoAction()
 	{
@@ -91,7 +95,7 @@ class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_
     }    
 
     /**
-     * get the categories
+     * deliver the categories
      */
     public function categoriesAction()
 	{
@@ -140,7 +144,7 @@ class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_
     }
     
     /**
-     * get the products
+     * deliver the products
      */
     public function productsAction()
 	{
@@ -167,8 +171,8 @@ class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_
 	  	$this->printOutput($jsondata);
     }
     
-	/*
-	 * get a product by id
+	/**
+	 * deliver a product by id
 	 */
     public function productsByIdAction()
 	{
@@ -192,7 +196,7 @@ class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_
 		}
     }
     
-	/*
+	/**
 	 * get new products
 	 */
     public function newProductsAction()
@@ -221,7 +225,7 @@ class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_
 		$this->printOutput($jsondata);
 	}
     
-	/*
+	/**
 	 * get the best products
 	 *
 	 */
@@ -269,12 +273,13 @@ class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_
         
 		$this->printOutput($jsondata);
     }
-    
-	/*
-	 * get shopping informations
-	 *
-	 * @return array
-	 */
+
+    /**
+     * get shopping informations
+     *
+     * @param $product
+     * @return array
+     */
     private function getShippingArray($product)
 	{
 		$shippingdataarray = array();
@@ -324,13 +329,14 @@ class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_
 		      
         return $shippingdataarray;
     }
-    
-	/*
-	 * get the data of an product
-	 *
-	 * @params $product_id (integer)
-	 * @return array
-	 */
+
+    /**
+     * get the data of an product.
+     *
+     * @param $products_id
+     * @internal param $product_id (integer)
+     * @return array
+     */
     private function getProductsData($products_id)
 	{
     	$currency = Shopware()->Db()->fetchOne("SELECT c.currency FROM s_core_currencies c INNER JOIN s_core_shops s ON c.id = s.currency_id"); 
@@ -461,20 +467,19 @@ class Shopware_Controllers_Frontend_Easymarketingapi extends Enlight_Controller_
         $products_data = $jsonproductarray;
         return $products_data;
     }
-	
-	/*
-	 * return the json object 
-	 *
-	 * @params $jsondata (json object)
-	 * @return json_object
-	 */
+
+    /**
+     * return the json object
+     *
+     * @param $jsondata (json object)
+     * @return json_object
+     */
 	protected function printOutput($jsondata)
 	{
 		$jsonoutput = json_encode($jsondata);
         header('Content-type: application/json');
         echo $jsonoutput; die;
 	}
-	
 }
 
 ?>

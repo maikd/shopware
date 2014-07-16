@@ -28,6 +28,9 @@
  * @version    27.03.2014 - 17:22
  */
 
+/**
+ * Class APIClient provides the interface for requesting the easymarketing backend.
+ */
 class APIClient
 {
 	protected static $_instance;
@@ -37,7 +40,7 @@ class APIClient
 	protected $ShopToken;
 	protected $WebsiteURL;
 	
-	/*
+	/**
 	 * constructor, set the api config
 	 */
 	public function __construct($APIToken = '', $ShopToken = '', $WebsiteURL = '')
@@ -49,8 +52,8 @@ class APIClient
 		$this->WebsiteURL 	= $WebsiteURL;
 	}
 	
-	/*
-	 * generate a instance of this class
+	/**
+	 * return an instance of this class. If no instance exists it will be created.
 	 *
 	 * @return object
 	 */
@@ -63,13 +66,15 @@ class APIClient
 		}
 		return self::$_instance;
 	}
-	
-	/*
-	 * perform a request
-	 *
-	 * @params $action (string), $params (array), $method (string)
-	 * @return array
-	 */
+
+    /**
+     * Perfom an http request.
+     *
+     * @param $action
+     * @param array $params
+     * @param string $method
+     * @return array
+     */
 	public function performRequest($action, $params = array(), $method = 'GET')
 	{
 		if(!$this->validateSettings())
@@ -154,7 +159,7 @@ class APIClient
 					);
 	}
 	
-	/*
+	/**
 	 * validate settings
 	 *
 	 * @return boolean
@@ -168,12 +173,13 @@ class APIClient
 		
 		return false;	
 	}
-	
-	/* 
-	 * convert response, if the response isn't a array
-	 *
-	 * @return array
-	 */
+
+    /**
+     * convert response, if the response isn't a array
+     *
+     * @param $content
+     * @return array
+     */
 	protected function convertResponse($content)
 	{
 		if(json_decode($content) != null)
@@ -187,12 +193,13 @@ class APIClient
 		
 		return $result;
 	}
-	
-	/*
-	 * convert object to array
-	 *
-	 * @return array
-	 */
+
+    /**
+     * convert object to array
+     *
+     * @param $content
+     * @return array
+     */
 	protected function makeObjectToArray($content)
 	{
 		if (is_array($content) || is_object($content))
@@ -206,7 +213,6 @@ class APIClient
 		}
 		return $content;
 	}
-	
 }
 		
 ?>

@@ -2,17 +2,7 @@
 
 ## Installation des Moduls
 
-Installieren Sie das Modul im Plugin Manager in Ihrem Shopsystem.
-
-Alternativ können Sie das Modul manuell installieren:
-
-Falls Sie bereits das Modul installiert haben, so deaktivieren Sie dieses bevor Sie die nächsten Schritte durchführen.
-
-1. [Das Modul hier herunterladen und entpacken.](https://github.com/EASYMARKETING/shopware/archive/master.zip)
-
-2. Den Ordner EasymIntegration per FTP auf den Server kopieren unter: `[ROOT]/engine/Shopware/Plugins/Community/Frontend`
- 
-3. Dann im Backend einfach unter Einstellungen Plugin-Manager das Modul installieren und aktivieren.
+Installieren Sie das Modul im Plugin Manager in Ihrem Shopsystem
 
 ## Konfiguration vom Modul
 		
@@ -48,17 +38,3 @@ Bei zukünftigen Updates vom Modul, gehen Sie die Schritte 1 und 2 aus dem Punkt
 Die Versionsnummer vom Modul wird bei jedem Update erneuert, sodass letzendlich neben dem Icon für das Löschen des Moduls ein blauer runder Pfeil erscheint.
 Diesen klicken Sie bitte einmal an. Dadurch wird das Update durchgeführt.
 Nach Abschluss des Updates wird eine höhere Versionsnummer in der Spalte `Version` angezeigt.
-
-## Für Entwickler
-
-* Im `master` prüfen ob es nicht bereits bestehende bug-fixes gibt.
-
-* Im `issue tracker` prüfen ob das Feature bzw. der Bug schon behoben wurde.
-
-* Forke das Projekt.
-
-* Starte einen Feature/Bugfix branch.
-
-* Commite so lange bis Du zufrieden bist mit der Arbeit.
-
-* Erstelle einen Pull-Request mit dem erstellten Branch.

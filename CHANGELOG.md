@@ -1,5 +1,8 @@
 # Changelog - EASYMARKETING Shopware Module
 
+### Version 4.1.8
+- change structure for plugin manager and store upload
+
 ### Version 4.1.7
 - add Facebook tracking pixel
 

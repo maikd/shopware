@@ -28,13 +28,16 @@
  * @version    27.03.2014 - 17:22
  */
 
+/**
+ * Class EasymarketingHelper provides some tool functions.
+ */
 class EasymarketingHelper
 {
 	
-	/*
+	/**
 	 * get the website url
 	 *
-	 * @params $shop_url (string)
+	 * @param $shop_url (string)
 	 * @return string
 	 */
 	public function getWebsiteURL($shop_url)
@@ -46,7 +49,7 @@ class EasymarketingHelper
 		return $website_url;
 	}
 	
-	/*
+	/**
 	 * generate secure shop token
 	 *
 	 * @return string
@@ -57,5 +60,4 @@ class EasymarketingHelper
 	}
 	
 }
-
 ?>

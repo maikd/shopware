@@ -28,6 +28,9 @@
  * @version    27.03.2014 - 17:22
  */
 
+/**
+ * Class EasymarketingConfig contains the plugin configuration.
+ */
 class EasymarketingConfig
 {
 	
@@ -35,7 +38,7 @@ class EasymarketingConfig
 	
 	protected $configData = array();
 	
-	/*
+	/**
 	 * constructor, get all configs at the database table
 	 */
 	public function __construct()
@@ -55,7 +58,7 @@ class EasymarketingConfig
 		}
 	}
 	
-	/*
+	/**
 	 * generate a instance of this class
 	 *
 	 * @return object
@@ -69,7 +72,7 @@ class EasymarketingConfig
 		return self::$_instance;
 	}
 	
-	/*
+	/**
 	 * get the config complete
 	 *
 	 * @return array
@@ -79,7 +82,7 @@ class EasymarketingConfig
 		return $this->configData;
 	}
 
-    /*
+    /**
 	 * overload function and extract the local function
 	 */
 	public function __call($name, $args)
@@ -105,10 +108,10 @@ class EasymarketingConfig
 		}
 	}
 
-    /*
+    /**
 	 * get config data of a config key
 	 *
-	 * @params $key (string)
+	 * @param $key (string)
 	 * @return string
 	 */
 	public function get($key)
@@ -121,7 +124,7 @@ class EasymarketingConfig
 		}
 	}
 
-	/*
+	/**
 	 * set config data of a config key
 	 *
 	 * @params $key (string), $value (string)
@@ -141,7 +144,7 @@ class EasymarketingConfig
 		$this->configData[$key] = $value;
 	}
 	
-	/*
+	/**
 	 * delete a config key with their value
 	 */
 	public function delete($key)

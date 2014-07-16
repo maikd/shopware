@@ -1,4 +1,8 @@
 <?php
+
+require_once(dirname(__FILE__) . '/Components/Config/EasymarketingConfig.class.php');
+require_once(dirname(__FILE__) . '/Components/API/APIClient.class.php');
+
 /**
  * Easymarketing Plugin
  * Copyright (c) 2013, BuI Hinsche GmbH
@@ -20,43 +24,39 @@
  * The licensing of the program under the AGPLv3 does not imply a
  * trademark license. Therefore any rights, titles and interests in the
  * above trademarks remain entirely with the trademark owners.
- * 
+ *
  * @copyright  Copyright (c) 2013, BuI Hinsche GmbH
- 
+
  * @modified_by Easymarketing AG, Florian Ressel <florian.ressel@easymarketing.de>
  *
  * @file       Bootstrap.php
  * @version    25.03.2014 - 17:22
  */
-
-require_once(dirname(__FILE__) . '/Components/Config/EasymarketingConfig.class.php');
-require_once(dirname(__FILE__) . '/Components/API/APIClient.class.php');
-
 class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {
 
-	/*
+	/**
 	 * get the label of the plugin
 	 *
 	 * @return string
 	 */	
 	public function getLabel()
     {
-        return 'Easymarketing';
+        return 'easymarketing Integration';
     }
 
-	/* 
+	/**
 	 * get the version of the plugin
 	 *
 	 * @return string
 	 */	 
     public function getVersion()
     {
-        return '4.1.7';
+        return '4.1.8';
     }
 
-	/*
-	 * install method
+	/**
+	 * installs the plugin.
 	 *
 	 * @return array
 	 */
@@ -77,7 +77,7 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
         return array('success' => true, 'invalidateCache' => array('backend', 'frontend'));
     }
 	
-	/* 
+	/**
 	 * uninstall method
 	 *
 	 * @return array
@@ -100,8 +100,9 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
     }
 	
 	/**
-	 * update method
+	 * update method does nothing.
 	 *
+     * @param oldVersion
 	 * @return boolean
 	 */
 	public function update($oldVersion) 
@@ -119,7 +120,7 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
 		return true;
 	}
 	
-	/*
+	/**
 	 * deactivates the plugin
 	 *
 	 * @return boolean
@@ -129,8 +130,8 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
 		return true;
 	}
     
-    /**
-	 * create database
+    /***
+	 * creates the database tables
 	 */
 	protected function createDataBase()
 	{
@@ -218,7 +219,7 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
         ));
     }
 	
-	/*
+	/**
 	 * get the path of the backend controller
 	 *
 	 * @params Enlight_Event_EventArgs $args
@@ -241,7 +242,7 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
       $view->extendsTemplate('backend/index/easymarketing_header.tpl');
    	}
 
-	/* 
+	/**
 	 * get the path of the frontend controller
 	 *
 	 * @params Enlight_Event_EventArgs $args
@@ -252,7 +253,7 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
     	return $this->Path() . 'Controllers/Frontend/Easymarketing.php';
     }  
 	
-	/*
+	/**
 	 * add a template snippet in the frontend
 	 */
 	public function onPostDispatchIndex(Enlight_Event_EventArgs $args) 
@@ -268,7 +269,7 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
         $view->extendsTemplate('frontend/index/easymarketing_header.tpl');
     }
 
-    /*
+    /**
 	 * add a template snippet in the checkout, if the order is finished
 	 */
     public function onAfterFinishAction(Enlight_Hook_HookArgs $args) 
@@ -301,7 +302,7 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
 		$args->getSubject()->View()->extendsTemplate('frontend/plugins/easymarketing/leadtracker.tpl');
 	}
 	
-	/*
+	/**
 	 * get the main info for the plugin
 	 */
 	public function getInfo() 
@@ -316,7 +317,7 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
 				);
 	}
 	
-	/*
+	/**
 	 * get the capabilities of the plugin
 	 */
 	public function getCapabilities()
