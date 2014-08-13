@@ -12,7 +12,13 @@ Ext.define('Shopware.apps.Easymarketing.model.Configs', {
 			name: 'RootCategoryID',
 			type: 'integer',
 			defaultValue: 0
-		}, {
+		},
+		{
+			name: 'ActivateGoogleRemarketingCode',
+			type: 'integer',
+			defaultValue: 0
+		},
+		 {
 			name: 'ActivateGoogleTracking',
 			type: 'integer',
 			defaultValue: 0

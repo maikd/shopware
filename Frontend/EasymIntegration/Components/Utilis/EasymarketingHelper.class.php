@@ -40,7 +40,7 @@ class EasymarketingHelper
 	 * @param $shop_url (string)
 	 * @return string
 	 */
-	public function getWebsiteURL($shop_url)
+	public static function getWebsiteURL($shop_url)
 	{
         $website_url = $shop_url;
         $website_url = str_replace('http://', '', $website_url);
@@ -54,10 +54,15 @@ class EasymarketingHelper
 	 *
 	 * @return string
 	 */ 
-	public function generateShopToken()
+	public static function generateShopToken()
 	{
 		return sha1(mt_rand(10,1000) . time());
 	}
-	
+
+    public static function last(&$array, $key){
+        end($array);
+        return $key === key($array);
+    }
+
 }
 ?>

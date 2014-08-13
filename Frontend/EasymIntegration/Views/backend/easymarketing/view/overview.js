@@ -112,6 +112,20 @@ Ext.define('Shopware.apps.Easymarketing.view.Overview', {
 			},
 			{
 				xtype: 'displayfield',
+				fieldLabel: '{s name=easymarketing/view/configs/textfield/ActivateGoogleRemarketingCode}Google Remarketing aktiv{/s}',
+				name: 'ActivateGoogleRemarketingCode',
+				renderer: function(value)
+				{
+					if (value == 1 && me.configs.get('TrackingStatus') == 1)
+					{
+						return Ext.String.format('<div style="color:#3C6">&#10003;</div>');
+					} else {
+						return Ext.String.format('<div style="color:#C00">&#10006;</div>');
+					}
+				}
+			},
+			{
+				xtype: 'displayfield',
 				fieldLabel: '{s name=easymarketing/view/configs/textfield/GoogleTrackingStatus}Google Tracking aktiv{/s}',
 				name: 'ActivateGoogleTracking',
 				renderer: function(value)

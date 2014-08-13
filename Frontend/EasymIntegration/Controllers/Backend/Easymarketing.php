@@ -102,6 +102,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		}
 		
 		// if the api token is invalid, return a error message
+		/* TODO comment in, for offline use*/
 		if(empty($this->Request()->APIToken) or !$validAPIToken)
 		{
 			return $this->View()->assign(array(
@@ -118,6 +119,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		$config->setActivateFacebookTracking($this->Request()->ActivateFacebookTracking);
 		$config->setShowFacebookLikeBadge($this->Request()->ShowFacebookLikeBadge);
 		$config->setRetargetingAdScaleStatus($this->Request()->RetargetingAdScaleStatus);
+		$config->setActivateGoogleRemarketingCode($this->Request()->ActivateGoogleRemarketingCode);
 		
 		// update data of the plugin
 		$this->updateEasymarketingDataAction();
@@ -161,6 +163,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		$this->getExtractionStatus();
 		$this->getFacebookBadge();
 		$this->getRetargetingIds();
+		$this->getRemarketingCode();
 	}
 	 
 	/**
@@ -394,6 +397,20 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 			EasymarketingConfig::getInstance()->setRetargetingAdScaleID($response['data']['adscale_id']);
 			EasymarketingConfig::getInstance()->setRetargetingAdScaleConversionID($response['data']['conversion_id']);
 		}
+	}
+	/**
+	 * get the tracking pixel from the easymarketing backend
+	 */
+	protected function getRemarketingCode()
+	{
+		$config = EasymarketingConfig::getInstance();
+		
+		$response_rc = APIClient::getInstance()->performRequest('google_remarketing_code');
+		if($response_rc['status'] == 200)
+		{
+			$config->setGoogleRemarketingCode($response_rc['data']['code']);
+		}
+		
 	}
     
 }

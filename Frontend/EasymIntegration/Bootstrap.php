@@ -2,6 +2,7 @@
 
 require_once(dirname(__FILE__) . '/Components/Config/EasymarketingConfig.class.php');
 require_once(dirname(__FILE__) . '/Components/API/APIClient.class.php');
+require_once(dirname(__FILE__) . '/Components/Utilis/EasymarketingHelper.class.php');
 
 /**
  * Easymarketing Plugin
@@ -165,6 +166,10 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
 	 */
 	protected function createEvents()
 	{
+		$this->subscribeEvent(
+        'Enlight_Controller_Action_PostDispatch',
+        'onPostDispatchFrontendIndexRemarketing'
+        );
 		$event = $this->createEvent(
  		'Enlight_Controller_Dispatcher_ControllerPath_Backend_Easymarketing',
  		'onGetControllerPathBackend'
@@ -195,6 +200,7 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
 	 	);
 		$this->subscribeEvent($event);
 		
+		//TODO maybe include the events from onPostDispatchFrontendIndex
 		$event = $this->createEvent(
         	'Enlight_Controller_Action_PostDispatch',
         	'onPostDispatchIndexRetargeting'
@@ -218,7 +224,48 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
 			'class' => 'easymarketing-icon'
         ));
     }
+
+    /**
+     * add a template snippet with the google remarketing code in the frontend
+     *
+     * @param Enlight_Event_EventArgs $args
+     */
+    public function onPostDispatchFrontendIndexRemarketing(Enlight_Event_EventArgs $args){
+		$caller = $args->getSubject();
+		$request = $caller->Request();
+		$view = $caller->View();
 	
+		$config = EasymarketingConfig::getInstance()->getConfigData();
+		$view->EasymarketingConfig = $config;
+
+        /* get the current basket content */
+        $tpl_vars = $view->template()->smarty->tpl_vars;
+        $basket = null;
+        if(isset($tpl_vars['sBasket'])){
+            $basket = $tpl_vars['sBasket']->value->content;
+        }
+        $basket = $tpl_vars['sBasket'];
+        $basketContent = $basket->value['content'];
+
+        /* creates json array from $basketItems or single value
+            and sets a template var*/
+        if(count($basketContent) > 1){
+            $ecomm_prodid = "[";
+            foreach($basketContent as $basketKey => $basketItem){
+                $ecomm_prodid .= "'".$basketItem['ordernumber']."'";
+                if(!EasymarketingHelper::last($basketContent, $basketKey)){
+                    $ecomm_prodid .= ",";
+                }
+            }
+            $ecomm_prodid .= "]";
+        }else{
+            $ecomm_prodid = "'".$basketContent[0]['ordernumber']."'";
+        }
+        $view->ecomm_prodid = $ecomm_prodid;
+        $view->addTemplateDir($this->Path() . 'Views/');
+		$args->getSubject()->View()->extendsTemplate('frontend/plugins/easymarketing/remarketing.tpl');
+	}
+
 	/**
 	 * get the path of the backend controller
 	 *
