@@ -200,7 +200,6 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
 	 	);
 		$this->subscribeEvent($event);
 		
-		//TODO maybe include the events from onPostDispatchFrontendIndex
 		$event = $this->createEvent(
         	'Enlight_Controller_Action_PostDispatch',
         	'onPostDispatchIndexRetargeting'

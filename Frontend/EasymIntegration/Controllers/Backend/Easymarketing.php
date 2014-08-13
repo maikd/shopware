@@ -102,7 +102,6 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		}
 		
 		// if the api token is invalid, return a error message
-		/* TODO comment in, for offline use*/
 		if(empty($this->Request()->APIToken) or !$validAPIToken)
 		{
 			return $this->View()->assign(array(
@@ -399,7 +398,7 @@ class Shopware_Controllers_Backend_Easymarketing extends Shopware_Controllers_Ba
 		}
 	}
 	/**
-	 * get the tracking pixel from the easymarketing backend
+	 * get the google remarketing code from the easymarketing backend
 	 */
 	protected function getRemarketingCode()
 	{
