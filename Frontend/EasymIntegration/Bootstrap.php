@@ -200,6 +200,7 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
 	 	);
 		$this->subscribeEvent($event);
 		
+		//TODO maybe include the events from onPostDispatchFrontendIndex
 		$event = $this->createEvent(
         	'Enlight_Controller_Action_PostDispatch',
         	'onPostDispatchIndexRetargeting'
@@ -247,20 +248,32 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
         $basketContent = $basket->value['content'];
 
         /* creates json array from $basketItems or single value
-            and sets a template var*/
+            and sets template vars with:
+            - ecomm_prodid = ordernumbers
+            - ecomm_quantity = quantity
+        */
+        $ecomm_prodid = "";
+        $ecomm_quantity = "";
         if(count($basketContent) > 1){
             $ecomm_prodid = "[";
+            $ecomm_quantity = "[";
             foreach($basketContent as $basketKey => $basketItem){
                 $ecomm_prodid .= "'".$basketItem['ordernumber']."'";
+                $ecomm_quantity .= "'".$basketItem['quantity']."'";
                 if(!EasymarketingHelper::last($basketContent, $basketKey)){
                     $ecomm_prodid .= ",";
+                    $ecomm_quantity .= ",";
                 }
             }
+            $ecomm_quantity  .= "]";
             $ecomm_prodid .= "]";
         }else{
             $ecomm_prodid = "'".$basketContent[0]['ordernumber']."'";
+            $ecomm_quantity  = "'".$basketContent[0]['quantity']."'";
         }
         $view->ecomm_prodid = $ecomm_prodid;
+        $view->ecomm_quantity = $ecomm_quantity;
+
         $view->addTemplateDir($this->Path() . 'Views/');
 		$args->getSubject()->View()->extendsTemplate('frontend/plugins/easymarketing/remarketing.tpl');
 	}

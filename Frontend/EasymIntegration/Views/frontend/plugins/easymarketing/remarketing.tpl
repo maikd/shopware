@@ -9,22 +9,34 @@
     {elseif  $Controller == "detail"}
         {if $EasymarketingConfig.ActivateGoogleRemarketingCode == 1 && !empty($EasymarketingConfig.GoogleRemarketingCode)}
             {$price = $sArticle.price|replace:",":"."}
-            {$EasymarketingConfig.GoogleRemarketingCode|replace:"ecomm_prodid: 'REPLACE_WITH_VALUE'":"ecomm_prodid: '`$sArticle.ordernumber`'"|replace:"ecomm_pagetype: 'REPLACE_WITH_VALUE'":"ecomm_pagetype: 'detail'"|replace:"ecomm_totalvalue: 'REPLACE_WITH_VALUE'":"ecomm_totalvalue: '`$price` '"}
+            {* replace required values *}
+            {$googleRC = $EasymarketingConfig.GoogleRemarketingCode|replace:"ecomm_prodid: 'REPLACE_WITH_VALUE'":"ecomm_prodid: '`$sArticle.ordernumber`'"|replace:"ecomm_pagetype: 'REPLACE_WITH_VALUE'":"ecomm_pagetype: 'detail'"|replace:"ecomm_totalvalue: 'REPLACE_WITH_VALUE'":"ecomm_totalvalue: '`$price` '"}
+            {* add additional values*}
+            {$googleRC|replace:"};":"ecomm_category: '`$sCategoryInfo.name`'};"}
         {/if}
 
         {* ----- TRACKING-CODE FOR LISTING ----- *}
     {elseif $Controller == "listing"}
         {if $EasymarketingConfig.ActivateGoogleRemarketingCode == 1 && !empty($EasymarketingConfig.GoogleRemarketingCode)}
-            {$EasymarketingConfig.GoogleRemarketingCode|replace:"ecomm_prodid: 'REPLACE_WITH_VALUE'":"ecomm_prodid: ''"|replace:"ecomm_pagetype: 'REPLACE_WITH_VALUE'":"ecomm_pagetype: 'category'"|replace:"ecomm_totalvalue: 'REPLACE_WITH_VALUE'":"ecomm_totalvalue: ''"}}
+            {* replace required values *}
+            {$googleRC = $EasymarketingConfig.GoogleRemarketingCode|replace:"ecomm_prodid: 'REPLACE_WITH_VALUE'":"ecomm_prodid: ''"|replace:"ecomm_pagetype: 'REPLACE_WITH_VALUE'":"ecomm_pagetype: 'category'"|replace:"ecomm_totalvalue: 'REPLACE_WITH_VALUE'":"ecomm_totalvalue: ''"}}
+            {* add additional values*}
+            {$googleRC|replace:"};":"ecomm_category: '`$sCategoryInfo.name`'};"}
         {/if}
         {* ----- TRACKING-CODE FOR CHECKOUT ----- *}
     {elseif $Controller == "checkout"}
         {*var_dump($sTargetAction)*}
         {if $EasymarketingConfig.ActivateGoogleRemarketingCode == 1 && !empty($EasymarketingConfig.GoogleRemarketingCode)}
             {if $sTargetAction == "cart"}
-                {$EasymarketingConfig.GoogleRemarketingCode|replace:"ecomm_prodid: 'REPLACE_WITH_VALUE'":"ecomm_prodid: `$ecomm_prodid`"|replace:"ecomm_pagetype: 'REPLACE_WITH_VALUE'":"ecomm_pagetype: 'cart'"|replace:"ecomm_totalvalue: 'REPLACE_WITH_VALUE'":"ecomm_totalvalue: '`$sBasket.sAmount`'"}
-            {else}
-                {$EasymarketingConfig.GoogleRemarketingCode|replace:"ecomm_prodid: 'REPLACE_WITH_VALUE'":"ecomm_prodid: `$ecomm_prodid`"|replace:"ecomm_pagetype: 'REPLACE_WITH_VALUE'":"ecomm_pagetype: 'purchase'"|replace:"ecomm_totalvalue: 'REPLACE_WITH_VALUE'":"ecomm_totalvalue: '`$sBasket.sAmount`'"}
+                {* replace required values *}
+                {$googleRC = $EasymarketingConfig.GoogleRemarketingCode|replace:"ecomm_prodid: 'REPLACE_WITH_VALUE'":"ecomm_prodid: `$ecomm_prodid`"|replace:"ecomm_pagetype: 'REPLACE_WITH_VALUE'":"ecomm_pagetype: 'cart'"|replace:"ecomm_totalvalue: 'REPLACE_WITH_VALUE'":"ecomm_totalvalue: '`$sBasket.sAmount`'"}
+                {* add additional values*}
+                {$googleRC|replace:"};":"ecomm_quantity: `$ecomm_quantity`};"}
+            {else}{* this is the purchase case*}
+                {* replace required values *}
+                {$googleRC = $EasymarketingConfig.GoogleRemarketingCode|replace:"ecomm_prodid: 'REPLACE_WITH_VALUE'":"ecomm_prodid: `$ecomm_prodid`"|replace:"ecomm_pagetype: 'REPLACE_WITH_VALUE'":"ecomm_pagetype: 'purchase'"|replace:"ecomm_totalvalue: 'REPLACE_WITH_VALUE'":"ecomm_totalvalue: '`$sBasket.sAmount`'"}
+                {* add additional values*}
+                {$googleRC|replace:"};":"ecomm_quantity: `$ecomm_quantity`};"}
             {/if}
 
         {/if}
