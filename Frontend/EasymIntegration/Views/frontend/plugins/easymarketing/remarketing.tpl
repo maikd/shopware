@@ -11,8 +11,9 @@
             {$price = $sArticle.price|replace:",":"."}
             {* replace required values *}
             {$googleRC = $EasymarketingConfig.GoogleRemarketingCode|replace:"ecomm_prodid: 'REPLACE_WITH_VALUE'":"ecomm_prodid: '`$sArticle.ordernumber`'"|replace:"ecomm_pagetype: 'REPLACE_WITH_VALUE'":"ecomm_pagetype: 'detail'"|replace:"ecomm_totalvalue: 'REPLACE_WITH_VALUE'":"ecomm_totalvalue: '`$price` '"}
+            {*$googleRC = $EasymarketingConfig.GoogleRemarketingCode|replace:"ecomm_prodid: 'REPLACE_WITH_VALUE'":"ecomm_prodid: '`$sArticle.ordernumber`'"|replace:"ecomm_pagetype: 'REPLACE_WITH_VALUE'":"ecomm_pagetype: 'detail'"|replace:"ecomm_totalvalue: 'REPLACE_WITH_VALUE',":""*}
             {* add additional values*}
-            {$googleRC = $googleRC|replace:"};":"ecomm_pvalue: '`$price`',};'"}
+            {$googleRC = $googleRC|replace:"};":"ecomm_pvalue: '`$price`',};"}
             {$GoogleRemarketingAdvancedTags = $googleRC|replace:"};":"ecomm_category: '`$sCategoryInfo.name`',};"}
         {/if}
 
