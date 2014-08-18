@@ -170,41 +170,35 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
         'Enlight_Controller_Action_PostDispatch',
         'onPostDispatchFrontendIndexRemarketing'
         );
-		$event = $this->createEvent(
+        $this->subscribeEvent(
  		'Enlight_Controller_Dispatcher_ControllerPath_Backend_Easymarketing',
  		'onGetControllerPathBackend'
 	 	);
-		$this->subscribeEvent($event);
-		
-		$event = $this->createEvent(
+
+        $this->subscribeEvent(
         'Enlight_Controller_Action_PostDispatch_Backend_Index',
         'onPostDispatchBackendIndex'
         );
-		$this->subscribeEvent($event);
-		
-		$event = $this->createEvent(
+
+        $this->subscribeEvent(
  		'Enlight_Controller_Dispatcher_ControllerPath_Frontend_Easymarketingapi',
  		'onGetControllerPathFrontend'
 	 	);
-		$this->subscribeEvent($event);
-		
-		$event = $this->createEvent(
+
+        $this->subscribeEvent(
  		'Enlight_Controller_Action_PostDispatch_Frontend_Index',
  		'onPostDispatchIndex'
 	 	);
-		$this->subscribeEvent($event);
-		
-        $event = $this->createEvent(
+
+        $this->subscribeEvent(
  		'Shopware_Controllers_Frontend_Checkout::finishAction::after',
  		'onAfterFinishAction'
 	 	);
-		$this->subscribeEvent($event);
-		
-		$event = $this->createEvent(
+
+        $this->subscribeEvent(
         	'Enlight_Controller_Action_PostDispatch',
         	'onPostDispatchIndexRetargeting'
         );
-		$this->subscribeEvent($event);
 	}
     
     /**
