@@ -233,6 +233,7 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
 		$caller = $args->getSubject();
 		$request = $caller->Request();
 		$view = $caller->View();
+        $logger = Shopware()->Pluginlogger();
 	
 		$config = EasymarketingConfig::getInstance()->getConfigData();
 		$view->EasymarketingConfig = $config;
@@ -272,6 +273,15 @@ class Shopware_Plugins_Frontend_EasymIntegration_Bootstrap extends Shopware_Comp
         }
         $view->ecomm_prodid = $ecomm_prodid;
         $view->ecomm_quantity = $ecomm_quantity;
+
+        /*check if a current user is logged in*/
+        try{
+            if(Shopware()->Modules()->Admin()->sCheckUser()){
+                $view->hasaccount = "y";
+            }
+        }catch(Exception $e){
+            $logger->info("Not able to load the user data. Failure: ".$e->getMessage());
+        }
 
         $view->addTemplateDir($this->Path() . 'Views/');
 		$args->getSubject()->View()->extendsTemplate('frontend/plugins/easymarketing/remarketing.tpl');
